@@ -8,7 +8,7 @@ export default (
     <Switch>
         <Route  path="/checkout" component={Checkout} />
         <Route  path="/login" component={Login} />
-        <Route  path="/product/:id" component={Login} />
+        <Route  path="/product/:id" component={Checkout} />
         <Route exact path="/" component={Shop} />
     </Switch>
 )

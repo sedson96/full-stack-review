@@ -4,6 +4,7 @@ const massive = require("massive")
 const session = require("express-session")
 
 const {login, register} = require("./controller/authController")
+const {getProducts} = require("./controller/productsController")
 
 const app = express()
 
@@ -16,14 +17,18 @@ app.use(session({
     saveUninitialized: true,
     secret: SESSION_SECRET
 }))
-
-app.post("/auth/login", login)
-app.post("/auth/register", register)
-
 massive(CONNECTION_STRING).then(dbInstance => {
     app.set("db", dbInstance)
     console.log("connected for sure")
 }).catch(error => console.log(error))
+
+// Authentication 
+app.post("/auth/login", login)
+app.post("/auth/register", register)
+
+// Products
+app.get("/api/products", getProducts)
+
 
 
 app.listen(SERVER_PORT, () => console.log(`Listening on ${SERVER_PORT}`))

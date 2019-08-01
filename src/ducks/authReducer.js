@@ -38,7 +38,6 @@ export function register(username, password) {
 
 function reducer(state = initialState, action) {
     const {type, payload} = action
-    console.log(action)
     switch(type) {
         case UPDATE_AUTH: 
             return {...state, [payload.name]: payload.value, error: ""}
